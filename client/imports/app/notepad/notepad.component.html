@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="headline">
+        <input class="title" type="text" placeholder="Unbenanntes Dokument" [(ngModel)]="fileService.getCurrentFile().name" (keyup)="onTitleChanged($event)"></input>
+
+        <span class="last-saved" *ngIf="fileService.getCurrentFile().subjectID !== '-1'">Zuletzt gespeichert: {{lastSaveTime}}</span>
+    </div>
+
+    <div class="textarea">
+        <quill-editor [placeholder]="editorContent" (onContentChanged)="onContentChanged($event)" [(ngModel)]="fileService.getCurrentFile().content" [modules]="modules"></quill-editor>
+    </div>
+</div>

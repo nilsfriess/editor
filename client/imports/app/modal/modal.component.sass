@@ -1,0 +1,60 @@
+.add-modal
+    position: absolute
+    bottom: 60px
+    width: auto
+    max-width: 300px
+    border-radius: 10px
+    padding: 12px
+    color: #111
+    background: lightgrey
+    font-size: 1.2em
+    animation: popup 300ms ease-in-out forwards
+    transform-origin: bottom left
+    border: 2px solid orangered
+
+    @keyframes popup
+        0%
+            transform: scale(0.1) rotate(30deg)
+        50%
+            transform: scale(0.9) rotate(-10deg)
+        70%
+            transform: rotate(3deg)
+        100%
+            transform: scale(1) rotate(0deg)
+
+    .checkbox-area
+        margin-bottom: 12px
+
+    #name
+        border: none
+        border-bottom: 1px solid white
+        font-size: inherit
+        width: 100%
+        background: rgba(255,255,255,0)
+
+        &::-webkit-input-placeholder
+            color: #222
+
+        &:placeholder-shown
+            font-style: italic
+
+        &:focus
+            outline: none
+            border-bottom: 1px solid orangered
+
+    select
+        -webkit-appearance: button
+        -webkit-border-radius: 2px
+        -webkit-user-select: none
+        background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5)
+        background-position: 97% center
+        background-repeat: no-repeat
+        border: 1px solid #AAA
+        color: #555
+        overflow: hidden
+        padding: 5px 10px
+        text-overflow: ellipsis
+        white-space: nowrap
+        margin-top: 10px
+        width: 100%
+        margin-bottom: 16px

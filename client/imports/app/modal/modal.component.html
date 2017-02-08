@@ -1,0 +1,15 @@
+<div class="add-modal">
+    <div class="checkbox-area">
+        <input type="radio" id="category" name="group-1" [(ngModel)]="type" value="subject">
+        <label for="category">Kategorie</label>
+
+        <input type="radio" id="note" name="group-1" [(ngModel)]="type" value="note">
+        <label for="note">Notiz</label>
+    </div>
+
+    <select name="categories" *ngIf="type === 'note'" [(ngModel)]="selectedSubject">
+        <option [ngValue]="subject" *ngFor="let subject of fileService.getSubjects()">{{subject.name}}</option>
+    </select>
+
+    <input [(ngModel)]="nameInput" type="text" id="name" placeholder="Name" (keypress)="createNew($event)">
+</div>
