@@ -4,6 +4,8 @@ import style from './sidebar.component.sass'
 
 import { Observable } from 'rxjs/Observable'
 
+import { AddModalComponent } from '../modal/modal.component'
+
 import { Files, Subjects } from '../../../../both/collections/files.collection'
 import { File, Subject } from '../../../../both/models/file.model'
 
@@ -19,20 +21,15 @@ export class SidebarComponent {
     private categories: string[] = [
         'Zuletzt verwendet',
         'Übersicht',
-        //'Einstellungen'
+        'Einstellungen'
     ]
     private currentCategory: string
 
     private type: string = "category"
     private showModal: boolean = false
-
+    
     constructor(private fileService: FileService, private elementRef: ElementRef) {
         this.currentCategory = this.categories[1]
-
-        document.addEventListener('click', (event) => {
-            if (!this.elementRef.nativeElement.contains(event.target))
-                this.showModal = false
-        })
     }
 
     changeCategory(category: string) {
@@ -52,5 +49,27 @@ export class SidebarComponent {
             return Subjects.findOne(subjectID).name
 
         return ''
+    }
+
+    clickShowModal(modal: AddModalComponent) {
+        this.showModal = true
+        setTimeout(() => {
+            modal.listenToClickEvent()
+        }, 50)
+    }
+
+    clickedOutside(modal: AddModalComponent) {
+        this.showModal = false
+        modal.stopListenToClickEvent()
+    }
+
+    colorChange(subject: Subject, color) {
+        console.log(subject.name, color)
+
+        Subjects.update(subject._id, {
+            $set: {
+                color: color
+            }
+        })
     }
 }

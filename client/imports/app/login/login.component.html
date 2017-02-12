@@ -1,0 +1,16 @@
+<div class="container">
+    <form #loginForm="ngForm">
+        <div class="choose-buttons">
+            <button [class.active]="signup !== true" (click)="signup=false">Einloggen</button>
+            <button [class.active]="signup === true" (click)="signup=true">Registrieren</button>
+        </div>
+        <div class="login-buttons">
+            <div class="input-container"><label for="mail">E-Mail</label><input name="mail" [(ngModel)]="credentials.mail" id="email" type="mail" required></div>
+            <div class="input-container"><label for="password">Passwort</label><input name="password" minlength="6" [(ngModel)]="credentials.password" id="password" type="password" required></div>
+            <div class="input-container" *ngIf="signup===true"><label for="password-confirm">Passwort bestätigen</label><input name="passwordCnf" [(ngModel)]="credentials.passwordCnf" id="password-confirm" type="password" minlength="6" required></div>
+        </div>
+
+        <button [disabled]="!loginForm.form.valid" type="submit" class="submit-button" *ngIf="signup" (click)="doSignup()">Registrieren</button>
+        <button [disabled]="!loginForm.form.valid" type="submit" class="submit-button" *ngIf="!signup" (click)="doLogin()">Anmelden</button> {{error}}
+    </form>
+</div>

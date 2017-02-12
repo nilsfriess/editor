@@ -1,60 +1,112 @@
-.add-modal
-    position: absolute
-    bottom: 60px
-    width: auto
-    max-width: 300px
-    border-radius: 10px
+.container
+    background: white
     padding: 12px
-    color: #111
-    background: lightgrey
-    font-size: 1.2em
-    animation: popup 300ms ease-in-out forwards
-    transform-origin: bottom left
-    border: 2px solid orangered
+    position: relative
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
 
-    @keyframes popup
-        0%
-            transform: scale(0.1) rotate(30deg)
-        50%
-            transform: scale(0.9) rotate(-10deg)
-        70%
-            transform: rotate(3deg)
-        100%
-            transform: scale(1) rotate(0deg)
+    .choose-buttons
+        button
+            cursor: pointer
+            position: absolute
+            background: none
+            height: 40px
+            background: white
+            color: orangered
+            transition: all 200ms ease
+            border: none
+            text-transform: uppercase
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)            
 
-    .checkbox-area
-        margin-bottom: 12px
+            &.active
+                color: white
+                background: orangered
 
-    #name
-        border: none
-        border-bottom: 1px solid white
-        font-size: inherit
-        width: 100%
-        background: rgba(255,255,255,0)
+            &:focus
+                outline: none
 
-        &::-webkit-input-placeholder
-            color: #222
+            &:first-child
+                left: 0
+                top: 0
+                width: 50%
 
-        &:placeholder-shown
-            font-style: italic
+            &:last-child
+                right: 0
+                top: 0
+                width: 50%
 
-        &:focus
-            outline: none
+
+    .inputs
+        margin-top: 34px
+
+        input
+            margin: 40px 25px 60px 25px
+            display: block
+            border: none
+            padding: 10px 0
+            border-bottom: solid 1px orangered
+            transition: all 0.3s cubic-bezier(.64,.09,.08,1)
+            background: linear-gradient(to bottom, rgba(255,255,255,0) 96%, orangered 4%)
+            background-position: -200px 0
+            background-size: 200px 100%
+            background-repeat: no-repeat
+            color: darken(orangered, 20%)
+            &:focus, &:valid
+                box-shadow: none
+                outline: none
+                background-position: 0 0
+            &::-webkit-input-placeholder
+                transition: all 0.3s ease-in-out
+                color: orangered
+                font-size: 11px
+                transform: translateY(-20px)
+                visibility: visible !important
+
+        select
+            font-family: inherit
+            background-color: transparent
+            width: 200px
+            padding: 4px 0
+            color: black
+            border: none
             border-bottom: 1px solid orangered
+            margin: 0 24px
+            cursor: pointer
 
-    select
-        -webkit-appearance: button
-        -webkit-border-radius: 2px
-        -webkit-user-select: none
-        background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5)
-        background-position: 97% center
-        background-repeat: no-repeat
-        border: 1px solid #AAA
-        color: #555
-        overflow: hidden
-        padding: 5px 10px
-        text-overflow: ellipsis
-        white-space: nowrap
-        margin-top: 10px
-        width: 100%
-        margin-bottom: 16px
+            &:disabled
+                color: #757575
+                cursor: not-allowed
+
+        select:focus 
+            outline: none
+
+        .mdl-selectfield select
+            appearance: none
+
+        .mdl-selectfield 
+            position: relative
+            margin: 0 auto
+
+            &:after 
+                position: absolute
+                top: 0.75em
+                right: 0.5em
+                width: 0
+                height: 0
+                padding: 0
+                content: ''
+                border-left: .25em solid transparent
+                border-right: .25em solid transparent
+                pointer-events: none
+
+    .submit-button
+        cursor: pointer
+        border: none
+        width: 50%
+        height: 40px
+        background: orangered
+        color: white
+        text-transform: uppercase
+        position: absolute
+        bottom: 12px
+        left: 25%
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)

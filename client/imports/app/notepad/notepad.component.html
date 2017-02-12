@@ -2,10 +2,17 @@
     <div class="headline">
         <input class="title" type="text" placeholder="Unbenanntes Dokument" [(ngModel)]="fileService.getCurrentFile().name" (keyup)="onTitleChanged($event)"></input>
 
-        <span class="last-saved" *ngIf="fileService.getCurrentFile().subjectID !== '-1'">Zuletzt gespeichert: {{lastSaveTime}}</span>
+        <span class="last-saved" *ngIf="fileService.getCurrentFile().subjectID !== '-1'">
+            Zuletzt gespeichert: {{lastSaveTime}}
+            <div class="save-button" (click)="saveClicked(editor)"><i class="ion-ios-cloud-upload-outline"></i></div>
+        </span>
     </div>
 
     <div class="textarea">
-        <quill-editor [placeholder]="editorContent" (onContentChanged)="onContentChanged($event)" [(ngModel)]="fileService.getCurrentFile().content" [modules]="modules"></quill-editor>
+        <quill-editor #editor [placeholder]="editorContent" (onContentChanged)="onContentChanged($event)" [(ngModel)]="fileService.getCurrentFile().content" [modules]="modules"></quill-editor>
+    </div>
+
+    <div class="user-info" *ngIf="user">
+        Eingeloggt als: {{user.emails[0].address}} <button (click)="logout()">Abmelden</button>
     </div>
 </div>

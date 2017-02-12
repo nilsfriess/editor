@@ -1,0 +1,54 @@
+.container
+    width: 450px
+    margin: -webkit-calc(50vh - 157px) auto
+    border: 1px solid orangered
+    border-radius: 10px
+    padding: 12px
+
+    button
+        cursor: pointer
+    
+    .choose-buttons
+        margin: 6px auto 15px auto
+        width: 50%
+        font-size: 1.2em
+
+        button
+            background: none
+            border: 1px solid orangered
+            border-radius: 9999px
+            margin-right: 5px
+            transition: all 200ms ease-in-out
+
+            &.active
+                color: white
+                background-color: orangered
+
+            &:focus
+                outline: none
+
+
+    .login-buttons
+        .input-container
+            width: 90%
+            margin: 5px auto
+
+            label
+                width: 160px
+                display: inline-block
+
+            input
+                width: 240px
+                border: 1px solid orangered
+                border-radius: 3px
+
+    .submit-button
+        display: inline-block
+        background: none
+        border: 1px solid orangered
+        border-radius: 9999px
+        width: 80%
+        margin: 12px 10% 6px 10%
+
+        &[disabled]
+            cursor: not-allowed

@@ -1,12 +1,39 @@
-import { NgModule } from '@angular/core' 
-import { BrowserModule } from '@angular/platform-browser' 
-import { AppComponent } from './app.component'
-import { SidebarComponent } from './sidebar/sidebar.component'
-import { NotepadComponent } from './notepad/notepad.component'
-import { AddModalComponent } from './modal/modal.component'
-import { FileService } from './files.service'
+import { NgModule }           from '@angular/core' 
+import { FormsModule }        from '@angular/forms'
+import { BrowserModule }      from '@angular/platform-browser' 
+import { 
+  Routes, 
+  RouterModule }              from '@angular/router'
+
+import { AppComponent }       from './app.component'
+import { SidebarComponent }   from './sidebar/sidebar.component'
+import { NotepadComponent }   from './notepad/notepad.component'
+import { AddModalComponent }  from './modal/modal.component'
+import { LoginComponent }     from './login/login.component'
+import { EditorComponent }    from './editor/editor.component'
+
+import { FileService }        from './files.service'
+
 import { QuillModule } from 'ngx-quill'
-import { FormsModule }   from '@angular/forms'
+import { AccountsModule } from 'angular2-meteor-accounts-ui'
+
+import { Meteor } from 'meteor/meteor'
+
+const routes: Routes = [
+  {
+    path: 'editor',
+    component: EditorComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '',
+    redirectTo: '/editor',
+    pathMatch: 'full'
+  }
+]
 
 @NgModule({
   // Components, Pipes, Directive
@@ -14,7 +41,9 @@ import { FormsModule }   from '@angular/forms'
     AppComponent,
     SidebarComponent,
     NotepadComponent,
-    AddModalComponent
+    AddModalComponent,
+    LoginComponent,
+    EditorComponent
   ],
   // Entry Components
   entryComponents: [
@@ -28,7 +57,9 @@ import { FormsModule }   from '@angular/forms'
   imports: [
     BrowserModule,
     QuillModule,
-    FormsModule
+    FormsModule,
+    AccountsModule,
+    RouterModule.forRoot(routes)
   ],
   // Main Component
   bootstrap: [ AppComponent ]

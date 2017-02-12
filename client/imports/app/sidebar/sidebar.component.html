@@ -11,7 +11,14 @@
         <div class="title">{{currentCategory}}</div>
 
         <div class="recent" *ngIf="currentCategory === categories[0]">
-            Recent
+            <ul>
+                <li *ngFor="let file of fileService.getRecentFiles()" (click)="fileService.setCurrentFile(file)">
+                    <div class="file-info">
+                        <div class="file-name">{{file.name}}</div>
+                        <div class="file-subject" [style.color]="fileService.getSubjectOfFile(file).color || black">{{fileService.getSubjectOfFile(file).name}}</div>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <div class="overview" *ngIf="currentCategory === categories[1]">
@@ -21,7 +28,7 @@
                     <li class="subject-title" *ngFor="let subject of fileService.getSubjects()">
                         <div class="text" [class.collapsed]="subject.collapsed === true" (click)="subject.collapsed = !subject.collapsed">
                             <i class="ion-minus" *ngIf="subject.collapsed === false"></i>
-                            <i class="ion-plus" *ngIf="subject.collapsed === true"></i> {{subject.name}}
+                            <i class="ion-plus" *ngIf="subject.collapsed === true"></i> <span [style.color]="subject.color">{{subject.name}}</span>
                             <i class="ion-ios-trash delete-icon" (click)="deleteSubjectClicked(subject)"></i>
                         </div>
                         <div class="files">
@@ -35,15 +42,17 @@
                 </ul>
             </div>
 
-            <add-modal *ngIf="showModal"></add-modal>
+            <add-modal #modal (clickedOutside)="clickedOutside(modal)" [class.hidden]="!showModal" [class.visible]="showModal"></add-modal>
 
-            <div class="add-button" (click)="showModal = true">
+            <div class="add-button" (click)="clickShowModal(modal)">
                 <i class="ion-plus-circled"></i>Hinzufügen
             </div>
         </div>
 
         <div class="settings" *ngIf="currentCategory === categories[2]">
-            Settings
+            <ul>
+                <li *ngFor="let subject of fileService.getSubjects()">{{subject.name}} | <input #colorInput type="color" [(ngModel)]="subject.color" (change)="colorChange(subject, colorInput.value)"></li>
+            </ul>
         </div>
     </div>
 </div>

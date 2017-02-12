@@ -4,6 +4,7 @@
     height: 93%
     width: 93%
     margin: 0 auto
+    position: relative
 
     .headline
         width: 100%
@@ -24,6 +25,20 @@
             &:placeholder-shown
                 font-style: italic
 
+        .save-button
+            display: inline-block
+            font-size: 1.8em
+            color: orangered
+            padding: 1px
+            margin-left: 4px
+            transition: all 200ms ease-in-out
+            cursor: pointer
+
+            &:hover
+                background: orangered
+                border-radius: 3px
+                color: white
+
         .last-saved
             font-size: 0.8em
             color: #222
@@ -33,7 +48,18 @@
 
     .textarea
         width: 100%
-        height: 90%
+        height: 84%
         resize: none
         border: none
         font-family: 'Roboto', sans-serif
+
+    .user-info
+        position: absolute
+        bottom: 0
+        right: 24px
+
+        button
+            background: none
+            color: red
+            border: 1px solid red
+            border-radius: 9999px
