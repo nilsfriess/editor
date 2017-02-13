@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core'
+import { Component, ElementRef, ViewChild, ComponentRef } from '@angular/core'
 import template from './sidebar.component.html'
 import style from './sidebar.component.sass'
 
@@ -19,14 +19,17 @@ import { FileService } from '../files.service'
 export class SidebarComponent {
 
     private categories: string[] = [
-        'Zuletzt verwendet',
+        'Einstellungen',
         'Übersicht',
-        'Einstellungen'
+        'Zuletzt verwendet'
     ]
     private currentCategory: string
 
     private type: string = "category"
     private showModal: boolean = false
+
+    private deleteModalObject: any = undefined
+    private showDeleteModal: boolean = false
     
     constructor(private fileService: FileService, private elementRef: ElementRef) {
         this.currentCategory = this.categories[1]
@@ -37,11 +40,26 @@ export class SidebarComponent {
     }
 
     deleteFileClicked(file) {
-        this.fileService.deleteFile(file)
+        this.showDeleteModal = true
+        this.deleteModalObject = file
+        //
     }
 
     deleteSubjectClicked(subject) {
-        this.fileService.deleteSubject(subject)
+        this.showDeleteModal = true
+        this.deleteModalObject = subject
+        //this.fileService.deleteSubject(subject)
+    }
+
+    deleteModalClicked(yes: boolean) {
+        if (yes) {
+            if (this.deleteModalObject.subjectID) {
+                this.fileService.deleteFile(this.deleteModalObject)
+            } else {
+                this.fileService.deleteSubject(this.deleteModalObject)
+            }
+        }
+        this.showDeleteModal = false
     }
 
     getNameOfSubjectID(subjectID) {
@@ -70,6 +88,12 @@ export class SidebarComponent {
             $set: {
                 color: color
             }
+        })
+    }
+
+    onTitleChanged(subject: Subject, value: string) {
+        Subjects.update(subject._id, {
+            $set: { name: value }
         })
     }
 }

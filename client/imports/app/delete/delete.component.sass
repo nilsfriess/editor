@@ -1,0 +1,44 @@
+.modal
+    width: 400px
+    height: 200px
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)
+    background: white
+    padding-top: 20px
+
+    .title
+        font-size: 1.4em
+        width: 80%
+        margin-left: 10%
+
+        strong
+            font-weight: bold
+
+    .button-group
+        width: 100%
+        margin-top: 40px
+
+        button
+            background: none
+            border: none
+            background: orangered
+            color: white
+            font-size: 1.3em
+            width: 35%
+            height: 35px
+            text-transform: uppercase
+            cursor: pointer
+            transition: all 100ms ease
+
+            &.yes
+                float: left
+                margin-left: 40px
+            &.no
+                float: right
+                margin-right: 40px
+            &:focus
+                outline: none
+
+            &:hover
+                color: orangered
+                background: white
+                border: 1px solid orangered

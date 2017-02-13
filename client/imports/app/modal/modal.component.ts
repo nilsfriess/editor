@@ -20,10 +20,8 @@ export class AddModalComponent {
 
     constructor(private fileService: FileService, private elementRef: ElementRef) {
         document.addEventListener('click', (event) => {
-            if (!this.elementRef.nativeElement.contains(event.target) && this.shouldFireEvent) {
+            if (!this.elementRef.nativeElement.contains(event.target) && this.shouldFireEvent)
                 this.clickedOutside.emit()
-                console.log('clicked outside')
-            }
         })
     }
 
@@ -41,12 +39,11 @@ export class AddModalComponent {
 
     listenToClickEvent() {
         this.shouldFireEvent = true
-        console.log('start listen')
     }
 
     stopListenToClickEvent() {
         this.shouldFireEvent = false
-        console.log('stop listen')
+        this.nameInput = ''
     }
 
 

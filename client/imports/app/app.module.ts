@@ -5,12 +5,13 @@ import {
   Routes, 
   RouterModule }              from '@angular/router'
 
-import { AppComponent }       from './app.component'
-import { SidebarComponent }   from './sidebar/sidebar.component'
-import { NotepadComponent }   from './notepad/notepad.component'
-import { AddModalComponent }  from './modal/modal.component'
-import { LoginComponent }     from './login/login.component'
-import { EditorComponent }    from './editor/editor.component'
+import { AppComponent }         from './app.component'
+import { SidebarComponent }     from './sidebar/sidebar.component'
+import { NotepadComponent }     from './notepad/notepad.component'
+import { AddModalComponent }    from './modal/modal.component'
+import { LoginComponent }       from './login/login.component'
+import { EditorComponent }      from './editor/editor.component'
+import { DeleteModalComponent } from './delete/delete.component'
 
 import { FileService }        from './files.service'
 
@@ -43,7 +44,8 @@ const routes: Routes = [
     NotepadComponent,
     AddModalComponent,
     LoginComponent,
-    EditorComponent
+    EditorComponent,
+    DeleteModalComponent
   ],
   // Entry Components
   entryComponents: [

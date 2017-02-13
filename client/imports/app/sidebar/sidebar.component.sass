@@ -8,26 +8,23 @@
         position: fixed
         transform-origin: left top
         transform: rotate(-90deg) translateX(-100%)
-        -webkit-transform-origin: left top
-        -webkit-transform: rotate(-90deg) translateX(-100%)
-        padding: 0
-        margin: 0 auto
 
         ul
-            list-style: none
-            margin: 0 auto
-            height: 100%
+            display: table
+            table-layout: fixed
+            width: 100vh
+            margin: 0
+            padding: 0
 
             li
-                margin-right: 40px
-                float: right
+                display: table-cell
+                width: auto
                 height: 100%
                 line-height: 45px
-                min-width: 200px
                 text-align: center
                 text-transform: uppercase
                 cursor: pointer
-
+                list-style: none
                 transition: all 100ms ease-in
 
                 &:hover
@@ -36,7 +33,6 @@
 
                 &.active
                     color: orangered
-
 
     .container
         margin-left: 45px
@@ -50,10 +46,8 @@
             text-transform: uppercase
             letter-spacing: 2px
             padding: 10px 0
-            height: 8%
-            -webkit-box-sizing: border-box
-            -moz-box-sizing: border-box
             box-sizing: border-box
+            text-overflow: ellipsis
 
             &:after
                 content: ''
@@ -78,17 +72,25 @@
 
                     .file-info
                         width: 100%
-                        min-height: 40px
-                        line-height: 40px
                         font-size: 1.3em
 
                         .file-name
-                            float: left
+                            white-space: nowrap
+                            text-overflow: ellipsis
+                            overflow: hidden
+                            display: inline-block
+                            max-width: 70%
 
                         .file-subject
+                            white-space: nowrap
+                            text-overflow: ellipsis
+                            overflow: hidden
                             float: right
-                            font-size: 0.8em
+                            display: inline-block
+                            max-width: 30%
+                            font-size: 0.7em
                             color: #333
+                            margin-top: 5px
 
         .overview
             position: relative
@@ -106,53 +108,71 @@
                 .subject-title
                     text-transform: uppercase
                     letter-spacing: 1px
-                    margin-bottom: 20px
-                    margin-right: 10px
+                    border-top: 1px solid #888
+                    border-bottom: 1px solid #888
+                    cursor: pointer
+                    transition: all 100ms ease-in
+                    margin-bottom: 12px
+
+                    &.collapsed+.files
+                        display: none
+
+                    &:hover
+                        border-top: 1px solid orangered
+                        border-bottom: 1px solid orangered
+
+                        &>.text
+                            max-width: 83%
+
+                        &>.delete-icon
+                            opacity: 1
 
                     .text
-                        border-top: 1px solid #888
-                        border-bottom: 1px solid #888
-                        cursor: pointer
+                        white-space: nowrap
+                        text-overflow: ellipsis
+                        overflow: hidden
+                        max-width: 95%
+                        display: inline-block
+                        transition: all 100ms ease
+
+
+                    .delete-icon
+                        float: right
+                        opacity: 0
                         transition: all 100ms ease-in
 
-                        &:hover
-                            border-top: 1px solid orangered
-                            border-bottom: 1px solid orangered
+                .files
+                    .file-title
+                        border-bottom: 1px solid lightgrey
+                        padding-left: 12px
+                        cursor: pointer
 
-                            &>.delete-icon
+                        &:hover
+                            border-bottom: 1px solid orangered                            
+
+                            &>.text
+                                max-width: 83%
+
+                            &>.delete-icon 
                                 opacity: 1
 
-                        &.collapsed+.files
-                            display: none
-
-                        .delete-icon
-                            float: right
-                            opacity: 0
-                            transition: all 100ms ease-in
-
-                    .files
-                        margin-left: 20px
-                        
-                        .delete-icon
-                            float: right
-                            opacity: 0
-                            transition: all 100ms ease-in
-
-                        .file-title
+                        .text
+                            display: inline-block
                             text-transform: none
-                            cursor: pointer
-                            border-bottom: 1px solid lightgrey
-                            margin: 4px 0
-
-                            &:hover
-                                border-bottom: 1px solid orangered
-
-                                &>.delete-icon
-                                    opacity: 1
+                            max-width: 95%
+                            text-overflow: ellipsis
+                            overflow: hidden
+                            white-space: nowrap
+                            transition: all 100ms ease
 
                             .empty-title
                                 font-style: italic
                                 color: #222
+                    
+                        .delete-icon
+                            float: right
+                            opacity: 0
+                            transition: all 100ms ease-in
 
             add-modal
                 position: absolute
@@ -208,7 +228,23 @@
                     &:first-child
                         border-top: 1px solid orangered
 
-                    input
+                    input[type="text"]
+                        background: none
+                        border: none
+                        cursor: pointer
+                        font-size: 1.3em
+                        display: inline-block
+                        width: 80%
+                        text-overflow: ellipsis
+                        white-space: nowrap
+                        overflow: hidden
+
+                        &:focus
+                            border: 1px solid orangered
+                            outline: none
+                            border-radius: 3px
+
+                    input[type="color"]
                         background: none
                         border: none
                         cursor: pointer
@@ -216,5 +252,20 @@
                         right: 0px
                         top: 5%
                         height: 90%
+
+.overlay
+    position: absolute
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    background: transparentize(black, 0.2)
+    z-index: 5
+
+delete-modal
+    position: absolute
+    left: calc(50vw - 200px)
+    top: calc(50% - 200px)
+    z-index: 6
                     
 
