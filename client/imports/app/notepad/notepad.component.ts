@@ -20,6 +20,7 @@ export class NotepadComponent implements OnInit, OnDestroy {
     private lastSaveTime: string
     private timerSubscription
     private currentFileSubscription
+    private editor: any
     user: Meteor.User
 
     editorConfig = {
@@ -48,6 +49,8 @@ export class NotepadComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
+
         this.timerSubscription = Observable.timer(0, 10000).subscribe(() => {
             this.timerHasTicked = true
         })
@@ -61,8 +64,17 @@ export class NotepadComponent implements OnInit, OnDestroy {
         })
 
         this.currentFileSubscription = this.fileService.getCurrentFileObservable().subscribe(file => {
-            if (file) this.setLastSaveTime(file.lastSave)
+            if (file) {
+                this.setLastSaveTime(file.lastSave)
+                this.editor.root.innerHTML = file.content
+                console.log(this.editor)
+            }
+                
         })
+    }
+
+    onEditorCreated(editor) {
+        this.editor = editor
     }
 
     setLastSaveTime(date: Date) {

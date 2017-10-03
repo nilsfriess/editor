@@ -9,7 +9,7 @@
     </div>
 
     <div class="textarea">
-        <quill-editor #editor [placeholder]="editorContent" (onContentChanged)="onContentChanged($event)" [(ngModel)]="fileService.getCurrentFile().content" [modules]="modules"></quill-editor>
+        <quill-editor #editor [placeholder]="editorContent" (onContentChanged)="onContentChanged($event)" (onEditorCreated)="onEditorCreated($event)" [modules]="modules"></quill-editor>
     </div>
 
     <div class="user-info" *ngIf="user">
